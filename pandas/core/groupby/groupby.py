@@ -1755,7 +1755,6 @@ class GroupBy(BaseGroupBy[NDFrameT]):
     ):
         # Note: we never get here with how="ohlc" for DataFrameGroupBy;
         #  that goes through SeriesGroupBy
-        # that goes through SeriesGroupBy
 
         # Check to confirm numeric_only is fed either True or False and no other data type
         if(isinstance(numeric_only, bool)):
