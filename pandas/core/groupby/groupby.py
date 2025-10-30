@@ -1755,8 +1755,13 @@ class GroupBy(BaseGroupBy[NDFrameT]):
     ):
         # Note: we never get here with how="ohlc" for DataFrameGroupBy;
         #  that goes through SeriesGroupBy
+        # that goes through SeriesGroupBy
 
-        data = self._get_data_to_aggregate(numeric_only=numeric_only, name=how)
+        # Check to confirm numeric_only is fed either True or False and no other data type
+        if(isinstance(numeric_only, bool)):
+            data = self._get_data_to_aggregate(numeric_only=numeric_only, name=how)
+        else:
+            raise ValueError("numeric_only accepts only Boolean values")
 
         def array_func(values: ArrayLike) -> ArrayLike:
             try:
